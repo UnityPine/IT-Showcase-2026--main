@@ -1,0 +1,561 @@
+:root {
+  --bg: #f8f9fa;
+  --fg: #1a1a1a;
+  --mut: #6c757d;
+  --line: #dee2e6;
+  --field: #ffffff;
+  --primary: #111111;
+  --primary-fg: #ffffff;
+  --accent: #3b82f6;
+  --danger: #dc2626;
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+ 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1115;
+    --fg: #f3f4f6;
+    --mut: #9ca3af;
+    --line: #2d3748;
+    --field: #1a1d24;
+    --primary: #ffffff;
+    --primary-fg: #0f1115;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --danger: #f87171;
+  }
+}
+ 
+:root[data-theme="dark"] {
+  --bg: #0f1115;
+  --fg: #f3f4f6;
+  --mut: #9ca3af;
+  --line: #2d3748;
+  --field: #1a1d24;
+  --primary: #ffffff;
+  --primary-fg: #0f1115;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --danger: #f87171;
+}
+ 
+html, body {
+  margin: 0;
+  height: 100%;
+}
+ 
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.5 "Inter", "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  gap: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+ 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+ 
+input[type=text] {
+  width: 320px;
+  max-width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 14px;
+  background: var(--field);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+ 
+input[type=text]:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+ 
+button, .filebtn {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--field);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+ 
+button:hover, .filebtn:hover {
+  border-color: var(--mut);
+  transform: translateY(-1px);
+}
+ 
+button:active, .filebtn:active {
+  transform: translateY(0);
+}
+ 
+button.primary {
+  background: var(--primary);
+  color: var(--primary-fg);
+  border-color: var(--primary);
+}
+ 
+button.primary:hover {
+  opacity: 0.9;
+}
+ 
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+ 
+#status {
+  color: var(--danger);
+  font-size: 13px;
+}
+ 
+#fontpanel {
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+ 
+#fontname {
+  color: var(--mut);
+  font-weight: 500;
+}
+ 
+.axis {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+ 
+.axis span {
+  font-weight: 500;
+  font-size: 13px;
+  min-width: 90px;
+}
+ 
+.axis input[type=range] {
+  width: 140px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+ 
+.axis output {
+  min-width: 3.5em;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--mut);
+}
+ 
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+ 
+.chip:hover {
+  border-color: var(--accent);
+}
+ 
+.chip input {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+ 
+#stage {
+  min-width: 0;
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  overflow: hidden;
+}
+ 
+#stage svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+ 
+.label {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+ 
+.label.inv {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  border-color: rgba(0, 0, 0, 0.85);
+}
+ 
+/* ---------- workspace: controls column on the left, stage on the right ---------- */
+/* ---------- workspace: menu pinned to the far left, canvas fills the rest ---------- */
+#workspace {
+  flex: 1;
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  min-height: 0;
+  position: relative;
+}
+ 
+#topbar {
+  flex: 0 0 400px;
+  width: 400px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 68px 20px 20px;   /* top padding leaves room for the menu toggle */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  overflow-y: auto;
+  background: var(--bg);
+  border-right: 1px solid var(--line);
+}
+ 
+/* Menu hidden: the sidebar is taken out of the layout, so the canvas gets the full width */
+body.menu-hidden #topbar {
+  display: none;
+}
+ 
+/* ---------- menu toggle (always visible, top-left corner) ---------- */
+#menutoggle {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 20;
+  gap: 8px;
+}
+ 
+body.menu-hidden #menutoggle {
+  background: rgba(20, 20, 20, 0.7);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+ 
+/* ---------- invert toggle ---------- */
+#invert[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--primary-fg);
+  border-color: var(--primary);
+}
+ 
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+ 
+#topbar input[type=text] {
+  flex: 1 1 100%;
+  width: 100%;
+}
+ 
+.axis {
+  flex-wrap: wrap;
+}
+ 
+#sentencepanel {
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+}
+ 
+#sentence {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: default;
+}
+ 
+.sentence-actions {
+  flex-wrap: nowrap;
+}
+ 
+#generate {
+  flex: 1;
+  justify-content: center;
+}
+ 
+#add {
+  min-width: 96px;
+  justify-content: center;
+}
+ 
+#sentenceStatus {
+  min-height: 1.5em;
+  color: var(--mut);
+  font-size: 13px;
+}
+ 
+#sentenceStatus.error {
+  color: var(--danger);
+}
+ 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+ 
+button:disabled:hover {
+  border-color: var(--line);
+  transform: none;
+}
+ 
+button.primary:disabled:hover {
+  border-color: var(--primary);
+  opacity: 0.5;
+}
+ 
+/* Narrow screens: the menu slides over the canvas instead of squeezing it */
+@media (max-width: 900px) {
+  #topbar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: min(400px, 100vw);
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.35);
+  }
+}
+ 
+/* ---------- section headings ---------- */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+ 
+.section-title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+ 
+/* ---------- voice input ---------- */
+#voicerow {
+  gap: 10px;
+}
+ 
+#mic {
+  gap: 8px;
+}
+ 
+#mic.listening {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #fff;
+  animation: micpulse 1.2s ease-in-out infinite;
+}
+ 
+@keyframes micpulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  #mic.listening { animation: none; }
+}
+ 
+select {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  background: var(--field);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+ 
+#voiceStatus:empty {
+  display: none;
+}
+ 
+#voiceStatus {
+  flex: 1 1 100%;
+  color: var(--mut);
+  font-size: 13px;
+}
+ 
+#voiceStatus.error {
+  color: var(--danger);
+}
+ 
+/* ---------- marquee footer ---------- */
+/* Purely visual: it scrolls by itself and cannot be scrolled, hovered, selected or clicked. */
+#marquee {
+  flex: 0 0 auto;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  overflow: clip;
+  background: var(--field);
+  border-top: 1px solid var(--line);
+  box-sizing: border-box;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+ 
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+ 
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+}
+ 
+/* font-family / weight / variation / features come from the same rule that styles the canvas text */
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 16px;
+  white-space: nowrap;
+  font-size: 16px;
+  /* The canvas always draws uppercase text, and display fonts like the loaded one often have
+     no lowercase letterforms, so the marquee shows uppercase too. Stored sentences are untouched. */
+  text-transform: uppercase;
+}
+ 
+/* Drawn with CSS instead of a "•" character, so it never depends on the loaded font's glyphs. */
+.marquee-item::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mut);
+}
+ 
+/* ---------- input box: text turns red when it is too long to fit ---------- */
+#input.over {
+  color: var(--danger);
+}
+ 
+/* ---------- password dialog (Clear stage) ---------- */
+#pwdialog {
+  width: min(380px, calc(100vw - 48px));
+  padding: 20px;
+  box-sizing: border-box;
+  background: var(--field);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+ 
+#pwdialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+ 
+#pwform {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+#pwtitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+ 
+#pwdialog p {
+  margin: 0;
+  color: var(--mut);
+  font-size: 13px;
+}
+ 
+#pwdialog input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+}
+ 
+#pwerror {
+  min-height: 1.5em;
+  color: var(--danger);
+  font-size: 13px;
+}
+ 
+.dialog-actions {
+  justify-content: flex-end;
+}
