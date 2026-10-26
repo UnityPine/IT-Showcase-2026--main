@@ -10,7 +10,7 @@ const PROFANITY_EN = [
   "asses", "asshat", "asswipe", "jackass", "dumbass", "dick", "dicks", "dickhead", "dickface",
   "cock", "cocks", "cocksucker", "cocksucking", "prick", "pricks", "cunt", "cunts", "pussy",
   "pussies", "twat", "twats", "wanker", "wankers", "wank", "tosser", "bollocks", "bugger", "slut",
-  "sluts", "slutty", "whore", "whores", "hoe", "skank", "titty", "titties", "dildo", "blowjob",
+  "sluts", "slutty", "whore", "whores", "hoe", "bababababbababababba", "skank", "titty", "titties", "dildo", "blowjob",
   "handjob", "rimjob", "cum", "cumshot", "jizz", "jerkoff", "wankstain", "anal", "porno", "boner",
   "douche", "douchebag", "douchebags", "scumbag", "dammit", "goddamn", "goddamned", "retard",
   "retarded", "retards", "spastic", "spaz", "nigger", "niggers", "nigga", "niggas", "coon",
